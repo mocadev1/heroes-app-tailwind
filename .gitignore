@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Static content
+public/assets/
+
+# JetBrains IDE configurations
+.idea/
+
 # dependencies
 /node_modules
 /.pnp
