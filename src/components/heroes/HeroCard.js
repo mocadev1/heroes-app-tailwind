@@ -44,6 +44,7 @@ export const HeroCard = ( {
 
                 <div
                     className="bg-blue-400 text-blue-50 rounded-lg py-2 px-4 mt-5 text-center"
+
                 >
 
                     <Link to={ `/hero/${ id }` }
