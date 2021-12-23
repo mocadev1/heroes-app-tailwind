@@ -42,17 +42,12 @@ export const HeroCard = ( {
                     <small>{ first_appearance }</small>
                 </p>
 
-                <div
-                    className="bg-blue-400 text-blue-50 rounded-lg py-2 px-4 mt-5 text-center"
+                <Link to={ `/hero/${ id }` }
+                      className="bg-blue-400 text-blue-50 rounded-lg py-2 px-4 mt-5 text-center block"
 
                 >
-
-                    <Link to={ `/hero/${ id }` }
-                          className=""
-                    >
-                        M&aacute;s...
-                    </Link>
-                </div>
+                    M&aacute;s...
+                </Link>
             </div>
 
         </li>

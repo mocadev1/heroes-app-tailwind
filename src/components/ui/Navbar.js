@@ -29,7 +29,6 @@ export const Navbar = () => {
 
                             <NavLink
                                 className={  ({ isActive }) => '' + ( isActive ? 'text-white' : '' ) }
-                                exact
                                 to="/marvel"
                             >
                                 Marvel
@@ -37,7 +36,6 @@ export const Navbar = () => {
 
                             <NavLink
                                 className={  ({ isActive }) => 'ml-5 ' + (isActive ? 'text-white' : '') }
-                                exact
                                 to="/dc"
                             >
                                 DC

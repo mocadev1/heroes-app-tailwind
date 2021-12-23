@@ -14,7 +14,11 @@ export const LoginScreen = () => {
 
     return (
         <div className="md:container md:mx-auto">
-            <h1>Login</h1>
+            <h1
+                className="text-3xl"
+            >
+                Login
+            </h1>
             <hr/>
 
             <button

@@ -1,6 +1,6 @@
 import { heroes } from '../data/heroes';
 
-export const GetHeroesByPublisher = ( publisher ) => {
+export const getHeroesByPublisher = ( publisher ) => {
 
     const validPublishers = [ 'DC Comics', 'Marvel Comics' ];
 
