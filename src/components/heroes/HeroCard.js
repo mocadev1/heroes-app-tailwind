@@ -12,7 +12,7 @@ export const HeroCard = ( {
 
     return (
         <li
-            className="border-2 border-gray-200 shadow-md rounded-md p-3 flex items-center"
+            className="border-2 border-gray-200 shadow-md rounded-md p-3 flex items-center animate__animated animate__fadeIn"
         >
 
             { /* Card Image*/ }

@@ -1,23 +1,26 @@
-import useForm from '../../hooks/useForm';
+import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import { getHeroesByName } from '../../selectors/getHeroesByName';
 import { HeroCard } from '../heroes/HeroCard';
-import { useSearchParams } from 'react-router-dom';
+
+import useForm from '../../hooks/useForm';
 
 export const SearchScreen = () => {
 
     const [ searchParams, setSearchParams ] = useSearchParams();
 
     // Nullish coalescing operator https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
-    const superhero = searchParams.get("superhero") ?? '';
+    const superheroParam = searchParams.get("superhero") ?? '';
 
     const [ formValues, handleInputChange ] = useForm({
-        searchTerm: superhero
+        searchTerm: superheroParam
     });
 
 
     const {searchTerm} = formValues;
     /* Nullish coalescing used before, so we can use an empty string as default value in the first render */
-    const filteredHeroes = getHeroesByName(superhero);
+    const filteredHeroes = useMemo(() => getHeroesByName(superheroParam), [ superheroParam ]);
 
 
     const handleSearch = ( e ) => {
@@ -73,6 +76,25 @@ export const SearchScreen = () => {
                     <hr/>
 
                     <div className="mt-3">
+
+                        {
+                            ( superheroParam === '' )
+                                ? // Little card when you have not written anything
+                                    <div
+                                        className="bg-blue-600 rounded-lg
+                                         p-3 text-white animate__animated animate__fadeIn"
+                                    >
+                                        B&uacute;sca el nombre de un s&uacute;perheroe
+                                    </div>
+                                : ( filteredHeroes.length === 0 )
+                                && // Little card when there are no matching heroes with the searchTerm
+                                    <div
+                                        className="bg-red-600 rounded-lg p-3
+                                        text-white animate__animated animate__fadeIn"
+                                    >
+                                        No hay resultados con "{ superheroParam }"
+                                    </div>
+                        }
 
                         {
                             filteredHeroes.map(hero =>
