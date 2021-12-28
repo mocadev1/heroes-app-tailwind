@@ -1,23 +1,28 @@
 import useForm from '../../hooks/useForm';
 import { getHeroesByName } from '../../selectors/getHeroesByName';
 import { HeroCard } from '../heroes/HeroCard';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 export const SearchScreen = () => {
 
-    const navigate = useNavigate();
+    const [ searchParams, setSearchParams ] = useSearchParams();
+
+    // Nullish coalescing operator https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
+    const superhero = searchParams.get("superhero") ?? '';
 
     const [ formValues, handleInputChange ] = useForm({
-        searchTerm: ''
+        searchTerm: superhero
     });
 
+
     const {searchTerm} = formValues;
-    const filteredHeroes = getHeroesByName('');
+    /* Nullish coalescing used before, so we can use an empty string as default value in the first render */
+    const filteredHeroes = getHeroesByName(superhero);
 
 
     const handleSearch = ( e ) => {
         e.preventDefault();
-        navigate(`?q=${ searchTerm }`);
+        setSearchParams({superhero: searchTerm});
     }
 
     return (
