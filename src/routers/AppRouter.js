@@ -1,7 +1,18 @@
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+
+import { LoginScreen } from '../components/login/LoginScreen';
+
+import { DashboardRoutes } from './DashboardRoutes';
+
 export const AppRouter = () => {
     return (
-        <div>
+        <BrowserRouter>
+            <Routes>
 
-        </div>
+                <Route path="/login" element={<LoginScreen />} />
+                <Route path="/*" element={ <DashboardRoutes /> }/>
+
+            </Routes>
+        </BrowserRouter>
     );
 };
