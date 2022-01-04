@@ -1,11 +1,19 @@
-import React from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../../auth/authContext';
+import { types } from '../../types/types';
 
 export const Navbar = () => {
+
+    const {user, dispatch} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
     const handleLogout = () => {
+
+        dispatch({type: types.logout});
+
         navigate('/login', {
             replace: true
         });
@@ -28,21 +36,21 @@ export const Navbar = () => {
                         <div>
 
                             <NavLink
-                                className={  ({ isActive }) => '' + ( isActive ? 'text-white' : '' ) }
+                                className={ ( {isActive} ) => '' + ( isActive ? 'text-white' : '' ) }
                                 to="/marvel"
                             >
                                 Marvel
                             </NavLink>
 
                             <NavLink
-                                className={  ({ isActive }) => 'ml-5 ' + (isActive ? 'text-white' : '') }
+                                className={ ( {isActive} ) => 'ml-5 ' + ( isActive ? 'text-white' : '' ) }
                                 to="/dc"
                             >
                                 DC
                             </NavLink>
 
                             <NavLink
-                                className={  ({ isActive }) => 'ml-5 ' + (isActive ? 'text-white' : '') }
+                                className={ ( {isActive} ) => 'ml-5 ' + ( isActive ? 'text-white' : '' ) }
                                 to="/search"
                             >
                                 Search
@@ -57,7 +65,7 @@ export const Navbar = () => {
                     <span
                         className="text-blue-500 mx-2"
                     >
-                        Omar
+                        { user.name }
                     </span>
                     <button
                         className="text-gray-500 mx-2"
