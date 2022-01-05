@@ -20,12 +20,18 @@ export const LoginScreen = () => {
 
         dispatch(action);
 
-        navigate('/', {
+        const lastPath = lastPathRecovery()  ?? '/';
+
+        navigate(`${lastPath}`, {
             replace: true
         });
 
 
     };
+
+    const lastPathRecovery = () => {
+        return localStorage.getItem('lastPath');
+    }
 
     return (
         <div className="md:container md:mx-auto">
