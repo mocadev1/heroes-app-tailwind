@@ -15,7 +15,7 @@ export const HeroesApp = () => {
     const [ user, dispatch ] = useReducer(authReducer, {}, init);
 
     useEffect(() => {
-        if (!user) return;
+        if (!user) return; // Does it have any sense? user always has something
 
         localStorage.setItem('user', JSON.stringify(user))
     }, [ user ]);
